@@ -1,3 +1,11 @@
 h1 {
   color: blueviolet;
 }
+
+li {
+  cursor: pointer;
+}
+
+li.selected {
+  background-color: lightblue;
+}

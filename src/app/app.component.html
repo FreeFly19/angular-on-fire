@@ -6,7 +6,8 @@
 <ul>
   <li
     *ngFor="let contact of contacts"
-    (click)="selectContact(contact)">
+    (click)="selectContact(contact)"
+    [class.selected]="isSelected(contact)">
     {{contact}}
   </li>
 </ul>

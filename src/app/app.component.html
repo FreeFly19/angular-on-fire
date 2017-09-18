@@ -2,9 +2,21 @@
   Welcome to {{title}}!
 </h1>
 
+<h2>Contacts</h2>
 <ul>
   <li
     *ngFor="let contact of contacts">
     {{contact}}
   </li>
 </ul>
+
+<h2>New Contact</h2>
+<form (submit)="addContact()">
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="contactName">
+  <button type="submit">
+    Add contact {{contactName}}
+  </button>
+</form>

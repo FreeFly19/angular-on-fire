@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular on Fire Chat';
+
+  contacts = [
+    'Rob',
+    'Ed',
+    'Jon'
+  ];
 }

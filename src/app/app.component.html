@@ -8,11 +8,16 @@
     *ngFor="let contact of contacts"
     (click)="selectContact(contact)"
     [class.selected]="isSelected(contact)">
-    {{contact}}
+    {{contact.name}}
   </li>
 </ul>
 
-<h2>{{selectedContact}}</h2>
+<div *ngIf="selectedContact">
+  <h2>{{selectedContact.name}}</h2>
+  <input
+  type="text"
+  [(ngModel)]="selectedContact.name">
+</div>
 
 <h2>New Contact</h2>
 <form (submit)="addContact()">

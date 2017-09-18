@@ -6,20 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  selectedContact: string;
+  selectedContact: { name: string };
 
   title = 'Angular on Fire Chat';
 
   contactName = '';
 
   contacts = [
-    'Rob',
-    'Ed',
-    'Jon'
+    { name: 'Rob' },
+    { name: 'Ed' },
+    { name: 'Jon' }
   ];
 
   addContact() {
-    this.contacts.push(this.contactName);
+    this.contacts.push({ name: this.contactName });
     this.contactName = '';
   }
 
@@ -27,7 +27,7 @@ export class AppComponent {
     this.selectedContact = contact;
   }
 
-  isSelected(contact: string): boolean {
+  isSelected(contact): boolean {
     return this.selectedContact == contact;
   }
 }

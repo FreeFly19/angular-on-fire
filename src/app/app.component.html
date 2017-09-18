@@ -5,10 +5,13 @@
 <h2>Contacts</h2>
 <ul>
   <li
-    *ngFor="let contact of contacts">
+    *ngFor="let contact of contacts"
+    (click)="selectContact(contact)">
     {{contact}}
   </li>
 </ul>
+
+<h2>{{selectedContact}}</h2>
 
 <h2>New Contact</h2>
 <form (submit)="addContact()">

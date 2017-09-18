@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  selectedContact: string;
+
   title = 'Angular on Fire Chat';
 
   contactName = '';
@@ -19,5 +21,9 @@ export class AppComponent {
   addContact() {
     this.contacts.push(this.contactName);
     this.contactName = '';
+  }
+
+  selectContact(contact) {
+    this.selectedContact = contact;
   }
 }

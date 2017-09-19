@@ -31,3 +31,8 @@ button {
 form button {
   margin-top: 10px;
 }
+
+#sign-out {
+  float: right;
+  @extend .btn-link;
+}

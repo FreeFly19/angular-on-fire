@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-board',
@@ -18,6 +19,9 @@ export class BoardComponent {
     { name: 'Jon' }
   ];
 
+  constructor(private userService: UserService) {
+  }
+
   addContact() {
     this.contacts.push({ name: this.contactName });
     this.contactName = '';
@@ -27,4 +31,7 @@ export class BoardComponent {
     this.selectedContact = contact;
   }
 
+  signOut() {
+    this.userService.signOut();
+  }
 }

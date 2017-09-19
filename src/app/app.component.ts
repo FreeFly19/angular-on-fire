@@ -27,7 +27,4 @@ export class AppComponent {
     this.selectedContact = contact;
   }
 
-  isSelected(contact): boolean {
-    return this.selectedContact == contact;
-  }
 }

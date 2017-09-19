@@ -28,22 +28,6 @@ button {
   @extend .btn-primary;
 }
 
-ul {
-  @extend .list-group;
-}
-
-ul>li {
-  @extend .list-group-item;
-}
-
-li {
-  cursor: pointer;
-}
-
-li.selected {
-  @extend .active
-}
-
 form button {
   margin-top: 10px;
 }

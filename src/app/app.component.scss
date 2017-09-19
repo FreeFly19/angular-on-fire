@@ -15,20 +15,12 @@ h1 {
   @extend .navbar-brand;
 }
 
-h2 {
-  margin-top: 20px;
-}
-
 aside {
   @extend .col-4;
 }
 
-main {
+contact-detail {
   @extend .col-8;
-}
-
-input[type="text"] {
-  @extend .form-control;
 }
 
 button {

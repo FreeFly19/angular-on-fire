@@ -27,9 +27,7 @@
   </form>
 </aside>
 
-<main *ngIf="selectedContact">
-  <h2>{{selectedContact.name}}</h2>
-  <input
-  type="text"
-  [(ngModel)]="selectedContact.name">
-</main>
+<contact-detail
+  *ngIf="selectedContact"
+  [contact]="selectedContact">
+</contact-detail>

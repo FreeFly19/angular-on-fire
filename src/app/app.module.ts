@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactDetailComponent,
-    ContactListComponent
+    ContactListComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

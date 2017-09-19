@@ -1,0 +1,33 @@
+@import '../../styles';
+
+:host {
+  @include make-row();
+}
+
+nav {
+  @extend .col-12;
+  @extend .navbar;
+  @extend .navbar-light;
+  @extend .bg-light;
+}
+
+h1 {
+  @extend .navbar-brand;
+}
+
+aside {
+  @extend .col-4;
+}
+
+contact-detail {
+  @extend .col-8;
+}
+
+button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+form button {
+  margin-top: 10px;
+}

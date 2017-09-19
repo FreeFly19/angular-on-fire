@@ -1,0 +1,28 @@
+<nav>
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</nav>
+
+<aside>
+  <contact-list
+    [contacts]="contacts"
+    (select)="selectContact($event)">
+  </contact-list>
+
+  <h2>New Contact</h2>
+  <form (submit)="addContact()">
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="contactName">
+    <button type="submit">
+      Add contact {{contactName}}
+    </button>
+  </form>
+</aside>
+
+<contact-detail
+  *ngIf="selectedContact"
+  [contact]="selectedContact">
+</contact-detail>

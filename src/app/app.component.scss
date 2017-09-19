@@ -1,5 +1,47 @@
+@import '../styles';
+
+:host {
+  @include make-row();
+}
+
+nav {
+  @extend .col-12;
+  @extend .navbar;
+  @extend .navbar-light;
+  @extend .bg-light;
+}
+
 h1 {
-  color: blueviolet;
+  @extend .navbar-brand;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+aside {
+  @extend .col-4;
+}
+
+main {
+  @extend .col-8;
+}
+
+input[type="text"] {
+  @extend .form-control;
+}
+
+button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+ul {
+  @extend .list-group;
+}
+
+ul>li {
+  @extend .list-group-item;
 }
 
 li {
@@ -7,5 +49,9 @@ li {
 }
 
 li.selected {
-  background-color: lightblue;
+  @extend .active
+}
+
+form button {
+  margin-top: 10px;
 }

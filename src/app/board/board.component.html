@@ -8,12 +8,11 @@
 
 <aside>
   <contact-list
-    [contacts]="contacts"
     (select)="selectContact($event)">
   </contact-list>
 
   <h2>New Contact</h2>
-  <form (submit)="addContact()">
+  <form (submit)="addContact({id: 'asdsadasd', displayName: contactName})">
     <input
       type="text"
       name="name"

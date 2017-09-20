@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from "../user.service";
+import {ContactService} from "../contact/contact.service";
+import {Contact} from "../contact/contact.model";
 
 @Component({
   selector: 'app-board',
@@ -7,23 +9,21 @@ import {UserService} from "../user.service";
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  selectedContact: { name: string };
+  selectedContact: Contact;
 
   title = 'Angular on Fire Chat';
 
   contactName = '';
 
-  contacts = [
-    { name: 'Rob' },
-    { name: 'Ed' },
-    { name: 'Jon' }
-  ];
-
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private contactService: ContactService
+  ) {
   }
 
-  addContact() {
-    this.contacts.push({ name: this.contactName });
+  addContact(contact) {
+    console.log(contact);
+    this.contactService.save(contact);
     this.contactName = '';
   }
 

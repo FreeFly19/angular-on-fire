@@ -13,6 +13,7 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
 import { AuthComponent } from './auth/auth.component';
 import { BoardComponent } from './board/board.component';
 import { UserService } from "./user.service";
+import {ContactService} from "./contact/contact.service";
 
 const routes: Routes = [
   { path: '', component: BoardComponent, pathMatch: 'full' },
@@ -36,7 +37,8 @@ const routes: Routes = [
     AngularFireAuthModule
   ],
   providers: [
-    UserService
+    UserService,
+    ContactService
   ],
   bootstrap: [AppComponent]
 })

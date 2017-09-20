@@ -1,6 +1,6 @@
 export class User {
-  id: String;
-  displayName: String;
+  id: string;
+  displayName: string;
 }
 
 export function fromFirebaseDbUser(user: any): User {

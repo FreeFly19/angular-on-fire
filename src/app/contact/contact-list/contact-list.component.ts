@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import {Observable} from "rxjs/Observable";
+import {Contact} from "../contact.model";
+import {ContactService} from "../contact.service";
 
 @Component({
   selector: 'contact-list',
@@ -6,9 +9,13 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent {
-  selectedContact: any;
-  @Input() contacts;
   @Output() select = new EventEmitter();
+  selectedContact: Contact;
+  contacts: Observable<Contact[]>;
+
+  constructor(private contactService: ContactService) {
+    this.contacts = contactService.contacts;
+  }
 
   selectContact(contact) {
     this.selectedContact = contact;

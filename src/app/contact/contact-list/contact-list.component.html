@@ -1,9 +1,9 @@
 <h2>Contacts</h2>
 <ul>
   <li
-    *ngFor="let contact of contacts"
+    *ngFor="let contact of contacts | async"
     (click)="selectContact(contact)"
     [class.selected]="isSelected(contact)">
-    {{contact.name}}
+    {{contact.displayName}}
   </li>
 </ul>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Contact } from './contact/contact.model';
 
@@ -8,17 +9,18 @@ import { Contact } from './contact/contact.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private db: AngularFireDatabase) {
+    db.list('/contacts')
+      .subscribe(contacts => this.contacts = contacts);
+  }
+
   selectedContact: Contact;
 
   title = 'Angular on Fire Chat';
 
   contactName = '';
 
-  contacts: Contact[] = [
-    { name: 'Rob' },
-    { name: 'Ed' },
-    { name: 'Jon' }
-  ] as Contact[];
+  contacts: Contact[] = [];
 
   addContact() {
     this.contacts.push({ name: this.contactName } as Contact);

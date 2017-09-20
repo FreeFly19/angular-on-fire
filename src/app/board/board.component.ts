@@ -3,7 +3,6 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 import { Contact } from "../contact/contact.model";
 
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -11,7 +10,10 @@ import { Contact } from "../contact/contact.model";
 })
 export class BoardComponent {
   contactList: FirebaseListObservable<Contact[]>;
-  constructor(private db: AngularFireDatabase) {
+  constructor(
+    private db: AngularFireDatabase,
+    private userService: UserService
+  ) {
     this.contactList = db.list('/contacts');
     this.contactList
       .subscribe(contacts => this.contacts = contacts);
@@ -42,4 +44,7 @@ export class BoardComponent {
     return this.contacts.filter(c => !c.starred);
   }
 
+  signOut() {
+    this.userService.signOut();
+  }
 }

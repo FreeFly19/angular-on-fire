@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-  constructor() {
+  constructor(private userService: UserService) {
+  }
+
+  signIn() {
+    this.userService.signIn();
   }
 }

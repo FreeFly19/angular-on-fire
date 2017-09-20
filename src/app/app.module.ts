@@ -7,13 +7,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { BoardComponent } from './board/board.component';
 import { firebaseConfig } from '../firebase-config';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactDetailComponent,
-    ContactListComponent
+    ContactListComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

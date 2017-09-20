@@ -6,7 +6,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent {
-  selectedContact: any;
+  @Input('selected') selectedContact: any;
   @Input() contacts;
   @Output() select = new EventEmitter();
   @Input() title: string;

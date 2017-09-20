@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'contact-detail',
@@ -6,7 +7,16 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./contact-detail.component.scss']
 })
 export class ContactDetailComponent {
+  contacts: FirebaseListObservable<any[]>;
+
+  constructor(private db: AngularFireDatabase) {
+    this.contacts = this.db.list('/contacts');
+  }
 
   @Input() contact;
+
+  saveContact() {
+    this.contacts.update(this.contact.$key, this.contact);
+  }
 
 }

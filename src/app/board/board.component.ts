@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Contact } from "../contact/contact.model";
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-board',

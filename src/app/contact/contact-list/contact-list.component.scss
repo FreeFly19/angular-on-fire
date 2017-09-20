@@ -1,5 +1,10 @@
 @import '../../../styles';
 
+h2 span {
+  font-size: 75%;
+  color: lightgray;
+}
+
 ul {
   @extend .list-group;
 }

@@ -6,7 +6,16 @@
 
 <aside>
   <contact-list
-    [contacts]="contacts"
+    title="Favorites"
+    [contacts]="starredContacts()"
+    [selected]="selectedContact"
+    (select)="selectContact($event)">
+  </contact-list>
+
+  <contact-list
+    title="Contacts"
+    [contacts]="otherContacts()"
+    [selected]="selectedContact"
     (select)="selectContact($event)">
   </contact-list>
 

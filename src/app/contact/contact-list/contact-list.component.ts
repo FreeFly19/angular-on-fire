@@ -9,6 +9,7 @@ export class ContactListComponent {
   selectedContact: any;
   @Input() contacts;
   @Output() select = new EventEmitter();
+  @Input() title: string;
 
   selectContact(contact) {
     this.selectedContact = contact;

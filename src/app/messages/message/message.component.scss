@@ -1,0 +1,9 @@
+@import '../../../styles';
+
+#message-body {
+  font-size: 0.8em;
+  @extend .alert;
+  @extend .alert-secondary;
+  @extend .text-sm-left;
+  @extend .col-11;
+}

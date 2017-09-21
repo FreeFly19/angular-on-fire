@@ -1,0 +1,13 @@
+<div class="row" [class.justify-content-end]="isCurrentUserAuthor">
+
+  <div id="message-body">
+    <div style="float: right">
+      <i>{{getSentData()}}</i>
+    </div>
+
+    <b>{{getAuthorName()}}</b>
+
+    <div>{{message.text}}</div>
+  </div>
+
+</div>

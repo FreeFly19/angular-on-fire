@@ -1,0 +1,21 @@
+<h2>{{contact.name}} <a [routerLink]="['/contacts', contact.id ,'edit']">Edit</a></h2>
+
+<div id="message-list">
+  <message *ngFor="let message of messages"
+           [message]="message"
+           [contact]="contact">
+  </message>
+
+  <div class="text-center" *ngIf="messages.length === 0">
+    There are not any messages yet...
+  </div>
+</div>
+
+<form ID="chat-input" (submit)="sendMessage()">
+  <div class="input-group">
+    <input type="text" name="messageText" [(ngModel)]="message.text" placeholder="Message...">
+    <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Send</button>
+    </span>
+  </div>
+</form>

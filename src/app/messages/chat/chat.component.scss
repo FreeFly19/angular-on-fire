@@ -1,0 +1,21 @@
+@import '../../../styles';
+
+h2 a {
+  font-size: 50%;
+}
+
+#message-list {
+  display: block;
+  overflow-y: scroll;
+  height: calc(100vh - 200px);
+  @extend .container;
+}
+
+#chat-input {
+  padding: 20px;
+  margin-top: 1px;
+  border: 2px solid #f0f0f0;
+  border-bottom: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

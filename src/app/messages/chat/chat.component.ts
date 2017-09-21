@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { Message } from '../message.model';
@@ -12,7 +12,8 @@ import { ActiveContact } from "../../contact/active-contact.service";
   styleUrls: ['./chat.component.scss'],
   providers: [ActiveContact]
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('messageList') messageListEl;
   contact: Contact;
   messages: Message[] = [];
   message: Message;
@@ -31,7 +32,14 @@ export class ChatComponent implements OnInit {
         this.contact = contact;
         return this.messageService.messageList(contact);
       })
-      .subscribe(messages => this.messages = messages);
+      .subscribe(messages => {
+        this.messages = messages;
+        this.scrollMessageListDown();
+      });
+  }
+
+  ngAfterViewChecked():void {
+    this.scrollMessageListDown();
   }
 
   sendMessage() {
@@ -39,4 +47,7 @@ export class ChatComponent implements OnInit {
     this.message = new Message();
   }
 
+  private scrollMessageListDown() {
+    this.messageListEl.nativeElement.scrollTop = this.messageListEl.nativeElement.scrollHeight;
+  }
 }

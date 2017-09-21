@@ -1,6 +1,6 @@
 <h2>{{contact.name}} <a [routerLink]="['/contacts', contact.id ,'edit']">Edit</a></h2>
 
-<div id="message-list">
+<div id="message-list" #messageList>
   <message *ngFor="let message of messages"
            [message]="message"
            [contact]="contact">

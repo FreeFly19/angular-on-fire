@@ -1,0 +1,29 @@
+{
+  "users" : {
+    "Hodor" : {
+      "displayName" : "Hodor Rules Again"
+    },
+    "freefly4ikATgmailDOTcom" : {
+      "contacts" : {
+        "oleksandrmATinterlink-uaDOTcom" : {
+          "name" : "Oleksandr Melnyk sdasd",
+          "starred" : false
+        }
+      },
+      "displayName" : "Александр Мельник"
+    },
+    "oleksandrmATinterlink-uaDOTcom" : {
+      "contacts" : {
+        "Hodor" : {
+          "name" : "Hodor Rules Again",
+          "starred" : false
+        },
+        "freefly4ikATgmailDOTcom" : {
+          "name" : "Александр Мельник",
+          "starred" : false
+        }
+      },
+      "displayName" : "Oleksandr Melnyk"
+    }
+  }
+}

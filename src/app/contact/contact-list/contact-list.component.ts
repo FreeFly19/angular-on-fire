@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input} from '@angular/core';
+import { Contact } from "../contact.model";
 
 @Component({
   selector: 'contact-list',
@@ -6,17 +7,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent {
-  @Input('selected') selectedContact: any;
-  @Input() contacts;
-  @Output() select = new EventEmitter();
+  @Input() contacts: Contact[];
   @Input() title: string;
-
-  selectContact(contact) {
-    this.selectedContact = contact;
-    this.select.next(contact);
-  }
-
-  isSelected(contact): boolean {
-    return this.selectedContact == contact;
-  }
 }

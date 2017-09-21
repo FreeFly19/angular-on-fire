@@ -13,11 +13,25 @@ import { BoardComponent } from './board/board.component';
 import { AuthComponent } from './auth/auth.component';
 import { UserService } from "./user.service";
 import { ContactService } from "./contact/contact.service";
+import { MessageService } from "./messages/message.service";
+import { ChatComponent } from './messages/chat/chat.component';
+import { MessageComponent } from "./messages/message/message.component";
+import { WelcomeComponent } from "./board/welcome.component";
 import { firebaseConfig } from '../firebase-config';
 
 const routes: Routes = [
-  { path: '', component: BoardComponent, pathMatch: 'full' },
+  { path: '', redirectTo: '/contacts', pathMatch: 'full' },
   { path: 'login', component: AuthComponent },
+  {
+    path: 'contacts',
+    component: BoardComponent,
+    children: [
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: ':id', component: ChatComponent },
+      { path: ':id/edit', component: ContactDetailComponent }
+    ]
+  }
 ];
 
 @NgModule({
@@ -26,7 +40,10 @@ const routes: Routes = [
     ContactDetailComponent,
     ContactListComponent,
     AuthComponent,
-    BoardComponent
+    BoardComponent,
+    ChatComponent,
+    MessageComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +55,8 @@ const routes: Routes = [
   ],
   providers: [
     UserService,
-    ContactService
+    ContactService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

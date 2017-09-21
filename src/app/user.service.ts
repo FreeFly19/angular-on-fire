@@ -17,26 +17,21 @@ import { User } from "./user.model";
 @Injectable()
 export class UserService {
   readonly currentUser: Subject<User> = new BehaviorSubject<User>(null);
-  readonly users: Subject<User[]> = new BehaviorSubject<User[]>([]);
 
   constructor(
     private afAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
-    router: Router
+    private router: Router
   ) {
     afAuth.authState
       .flatMap(user => user? this.getById(UserService.emailToId(user.email)): Observable.of(null))
       .subscribe(this.currentUser);
 
     this.currentUser
-      .subscribe((user) => {
-        const path = user? '/': '/login';
+      .subscribe(user => {
+        const path = user? '/contacts/welcome': '/login';
         router.navigate([path]);
       });
-
-    this.afDatabase.list('/users')
-      .map(users => users.map(UserService.toUserFromUserSnapshot))
-      .subscribe(this.users);
   }
 
   signIn(): void {
@@ -66,7 +61,7 @@ export class UserService {
   }
 
   static emailToId(email: string): string {
-    return email.replace('.', ';');
+    return email.replace('.', 'DOT').replace('@', 'AT');
   }
 
   static toUserFromUserSnapshot(userSnapshot): User {

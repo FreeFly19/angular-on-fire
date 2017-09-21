@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
+import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import "rxjs/add/operator/zip";
@@ -50,7 +51,16 @@ export class ContactService {
           .object(`/users/${curUser.id}/contacts/${contact.id}`)
           .update({name: contact.name, starred: contact.starred});
       });
+  }
 
+
+  getContactById(contactId: string): Observable<Contact> {
+    return this.userService.currentUser
+      .filter(curUser => !!curUser)
+      .flatMap(curUser => {
+        return this.afDatabase.object(`/users/${curUser.id}/contacts/${contactId}`)
+      })
+      .map(ContactService.fromSnapshot);
   }
 
   private static fromSnapshot(c: any): Contact {

@@ -12,16 +12,12 @@
 <aside>
   <contact-list
     title="Favorites"
-    [contacts]="starredContacts()"
-    [selected]="selectedContact"
-    (select)="selectContact($event)">
+    [contacts]="starredContacts()">
   </contact-list>
 
   <contact-list
     title="Contacts"
-    [contacts]="otherContacts()"
-    [selected]="selectedContact"
-    (select)="selectContact($event)">
+    [contacts]="otherContacts()">
   </contact-list>
 
   <h2>New Contact</h2>
@@ -37,7 +33,6 @@
   </form>
 </aside>
 
-<contact-detail
-  *ngIf="selectedContact"
-  [contact]="selectedContact">
-</contact-detail>
+<div id="child-outlet">
+  <router-outlet></router-outlet>
+</div>

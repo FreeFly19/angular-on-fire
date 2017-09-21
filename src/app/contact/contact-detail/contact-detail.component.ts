@@ -1,16 +1,24 @@
-import { Component, Input } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {ContactService} from "../contact.service";
+import { Component, OnInit } from '@angular/core';
+import { ContactService } from "../contact.service";
+import { ActiveContact } from "../active-contact.service";
+import { Contact } from "../contact.model";
 
 @Component({
   selector: 'contact-detail',
   templateUrl: './contact-detail.component.html',
-  styleUrls: ['./contact-detail.component.scss']
+  styleUrls: ['./contact-detail.component.scss'],
+  providers: [ActiveContact]
 })
-export class ContactDetailComponent {
-  @Input() contact;
+export class ContactDetailComponent implements OnInit {
+  contact: Contact = new Contact();
 
-  constructor(private contactService: ContactService) {
+  constructor(
+    private contactService: ContactService,
+    private activeContact: ActiveContact
+  ) {}
+
+  ngOnInit(): void {
+    this.activeContact.contact.subscribe(contact => this.contact = contact);
   }
 
   saveContact() {

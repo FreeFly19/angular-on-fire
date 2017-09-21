@@ -19,7 +19,7 @@ aside {
   @extend .col-4;
 }
 
-contact-detail {
+#child-outlet {
   @extend .col-8;
 }
 
@@ -30,6 +30,7 @@ button {
 
 form button {
   margin-top: 10px;
+  width: 100%;
 }
 
 #sign-out {

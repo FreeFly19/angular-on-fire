@@ -3,7 +3,10 @@
     Welcome to {{title}}!
   </h1>
 
-  <button id="sign-out" (click)="signOut()">Sign out</button>
+  <div id="sign-out">
+    {{currentUser?.displayName}}
+    <button (click)="signOut()">Sign out</button>
+  </div>
 </nav>
 
 <aside>

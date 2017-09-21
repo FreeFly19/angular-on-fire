@@ -34,5 +34,9 @@ form button {
 
 #sign-out {
   float: right;
+}
+
+#sign-out button {
+  @extend .btn;
   @extend .btn-link;
 }

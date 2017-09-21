@@ -17,10 +17,13 @@ import { User } from "./user.model";
 @Injectable()
 export class UserService {
   readonly currentUser: Subject<User> = new BehaviorSubject<User>(null);
+  readonly users: Subject<User[]> = new BehaviorSubject<User[]>([]);
 
-  constructor(private afAuth: AngularFireAuth,
-              private afDatabase: AngularFireDatabase,
-              router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afDatabase: AngularFireDatabase,
+    router: Router
+  ) {
     afAuth.authState
       .flatMap(user => user? this.getById(UserService.emailToId(user.email)): Observable.of(null))
       .subscribe(this.currentUser);
@@ -30,6 +33,10 @@ export class UserService {
         const path = user? '/': '/login';
         router.navigate([path]);
       });
+
+    this.afDatabase.list('/users')
+      .map(users => users.map(UserService.toUserFromUserSnapshot))
+      .subscribe(this.users);
   }
 
   signIn(): void {
@@ -55,12 +62,14 @@ export class UserService {
   getById(userId: string): Observable<User> {
     return this.afDatabase
       .object(`/users/${userId}`)
-      .map(userSnapshot => {
-        return {id: userSnapshot.$key, displayName: userSnapshot.displayName};
-      });
+      .map(UserService.toUserFromUserSnapshot);
   }
 
-  private static emailToId(email: string): string {
+  static emailToId(email: string): string {
     return email.replace('.', ';');
+  }
+
+  static toUserFromUserSnapshot(userSnapshot): User {
+    return {id: userSnapshot.$key, displayName: userSnapshot.displayName};
   }
 }

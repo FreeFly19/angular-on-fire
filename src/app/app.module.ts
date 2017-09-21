@@ -12,6 +12,7 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
 import { BoardComponent } from './board/board.component';
 import { AuthComponent } from './auth/auth.component';
 import { UserService } from "./user.service";
+import { ContactService } from "./contact/contact.service";
 import { firebaseConfig } from '../firebase-config';
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
-    UserService
+    UserService,
+    ContactService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/filter";
+import "rxjs/add/observable/from";
 
 import { Contact } from "../contact/contact.model";
 import { UserService } from "../user.service";
+import { ContactService } from "../contact/contact.service";
 
 @Component({
   selector: 'app-board',
@@ -10,27 +14,21 @@ import { UserService } from "../user.service";
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  contactList: FirebaseListObservable<Contact[]>;
-  constructor(
-    private db: AngularFireDatabase,
-    private userService: UserService
-  ) {
-    this.contactList = db.list('/contacts');
-    this.contactList
-      .subscribe(contacts => this.contacts = contacts);
-  }
-
   selectedContact: Contact;
-
   title = 'Angular on Fire Chat';
-
-  contactName = '';
-
+  contactEmail = '';
   contacts: Contact[] = [];
 
+  constructor(
+    private contactService: ContactService,
+    private userService: UserService
+  ) {
+    contactService.contacts.subscribe(contacts => this.contacts = contacts)
+  }
+
   addContact() {
-    this.contactList.push({ name: this.contactName } as Contact);
-    this.contactName = '';
+    this.contactService.addContact(this.contactEmail);
+    this.contactEmail = '';
   }
 
   selectContact(contact) {

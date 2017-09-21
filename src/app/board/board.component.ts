@@ -13,7 +13,6 @@ import { User } from "../user.model";
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  selectedContact: Contact;
   title = 'Angular on Fire Chat';
   contactEmail = '';
   contacts: Contact[] = [];
@@ -32,9 +31,6 @@ export class BoardComponent {
     this.contactEmail = '';
   }
 
-  selectContact(contact) {
-    this.selectedContact = contact;
-  }
 
   starredContacts(): Contact[] {
     return this.contacts.filter(c => c.starred);

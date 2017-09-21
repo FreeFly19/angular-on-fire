@@ -66,6 +66,7 @@ export class HodorBot {
     message.sender.displayName = 'Hodor Rules Again';
 
     this.userService.currentUser
+      .filter(user => !!user) // Disable replying if user is not authenticated
       .first()
       .subscribe(curUser =>
         this.messageService.saveMessageToDb({id: curUser.id, name: curUser.displayName}, message, message.sender)

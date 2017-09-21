@@ -16,7 +16,7 @@ import { User } from "./user.model";
 
 @Injectable()
 export class UserService {
-  readonly currentUser: Subject<User> = new BehaviorSubject<User>(null);
+  readonly currentUser: Subject<User> = new BehaviorSubject<User>(undefined);
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -26,23 +26,19 @@ export class UserService {
     afAuth.authState
       .flatMap(user => user? this.getById(UserService.emailToId(user.email)): Observable.of(null))
       .subscribe(this.currentUser);
-
-    this.currentUser
-      .subscribe(user => {
-        const path = user? '/contacts/welcome': '/login';
-        router.navigate([path]);
-      });
   }
 
   signIn(): void {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(authInfo => authInfo.user)
       .then(user => this.update(user))
-      .then(user => this.currentUser.next(user));
+      .then(user => this.currentUser.next(user))
+      .then(this.navigateTo('/contacts/welcome'));
   }
 
   signOut(): void {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
+      .then(this.navigateTo('/login'));
   }
 
   update(afUser: any): firebase.Promise<User> {
@@ -61,10 +57,14 @@ export class UserService {
   }
 
   static emailToId(email: string): string {
-    return email.replace('.', 'DOT').replace('@', 'AT');
+    return email.replace(/\./g, 'DOT').replace('@', 'AT');
   }
 
   static toUserFromUserSnapshot(userSnapshot): User {
     return {id: userSnapshot.$key, displayName: userSnapshot.displayName};
+  }
+
+  private navigateTo(path) {
+    return () => this.router.navigate([path]);
   }
 }

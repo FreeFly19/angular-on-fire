@@ -17,6 +17,7 @@ import { MessageService } from "./messages/message.service";
 import { ChatComponent } from './messages/chat/chat.component';
 import { MessageComponent } from "./messages/message/message.component";
 import { WelcomeComponent } from "./board/welcome.component";
+import { AuthGuard } from "./auth/auth.guard";
 import { firebaseConfig } from '../firebase-config';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: BoardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: 'welcome', component: WelcomeComponent },
@@ -54,6 +56,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
+    AuthGuard,
     UserService,
     ContactService,
     MessageService
